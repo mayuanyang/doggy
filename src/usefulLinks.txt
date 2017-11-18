@@ -1,0 +1,4 @@
+Loading images data from dir, augmentation etc
+https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html
+
+Note: Looks like supervised training for images does not need a label file, instead it bases on the folder, e.g. each folder is 1 category
