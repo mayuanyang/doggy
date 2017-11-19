@@ -11,11 +11,11 @@ nb_train_samples = 8038
 nb_validation_samples = 39
 batch_size = 32
 nb_classes = 5
-nb_epoch = 10
+nb_epoch = 200
 data_augmentation = True
 
 # input image dimensions
-img_rows, img_cols = 32, 32
+img_rows, img_cols = 128, 128
 # images are RGB.
 img_channels = 3
 
