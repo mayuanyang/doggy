@@ -31,7 +31,7 @@ lr_reducer = ReduceLROnPlateau(factor=np.sqrt(0.1), cooldown=0, patience=5, min_
 early_stopper = EarlyStopping(min_delta=0.001, patience=10)
 csv_logger = CSVLogger('doggy_result.csv')
 
-model = resnet.ResnetBuilder.build_resnet_18((img_channels, img_rows, img_cols), nb_classes)
+model = resnet.ResnetBuilder.build_resnet_34((img_channels, img_rows, img_cols), nb_classes)
 model_checkpoint = ModelCheckpoint('weights.{epoch:02d}-{val_loss:.2f}.hdf5', save_best_only=True, save_weights_only=True, monitor='val_loss')
 
 model.compile(loss='categorical_crossentropy',
@@ -45,9 +45,7 @@ else:
     print('Using real-time data augmentation.')
     # this is the augmentation configuration we will use for training
     train_datagen = ImageDataGenerator(
-        rescale=1. / 255,
-        shear_range=0.2,
-        zoom_range=0.2,
+        zca_whitening=True,
         rotation_range=25,
         horizontal_flip=True)
 
@@ -56,7 +54,7 @@ else:
     # check this api for more into https://keras.io/preprocessing/image/
 
     test_datagen = ImageDataGenerator(
-        rescale=1. / 255,
+        zca_whitening=True,
         rotation_range=25)
 
     train_generator = train_datagen.flow_from_directory(
