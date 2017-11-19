@@ -15,7 +15,7 @@ nb_epoch = 200
 data_augmentation = True
 
 # input image dimensions
-img_rows, img_cols = 128, 128
+img_rows, img_cols = 64, 64
 # images are RGB.
 img_channels = 3
 
@@ -75,7 +75,7 @@ else:
         epochs=nb_epoch,
         validation_data=validation_generator,
         validation_steps=nb_validation_samples // batch_size,
-        callbacks=[lr_reducer, early_stopper, csv_logger, model_checkpoint])
+        callbacks=[lr_reducer, csv_logger, model_checkpoint])
 
 # Save model and weights
 model.save(model_path)
