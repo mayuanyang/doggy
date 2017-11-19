@@ -21,4 +21,5 @@ examples/img/*
 .idea
 .vscode
 *.h5
+*.hdf5
 dog_dataset
