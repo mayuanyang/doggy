@@ -2,7 +2,7 @@
 An AI model to classify dog's actions
 
 ## Setup
-Follow this guide to setup the trainning and eveluation environment
+Follow this guide to setup the trainning and evaluation environment
 ### Amazon DLAMI
 If you are using Amazon DLAMI, all the AI frameworks should be already installed, follow the start up screen to activate the training environment
 
