@@ -10,8 +10,10 @@ from keras.models import Model
 from keras.layers import Dense, GlobalAveragePooling2D
 from keras.preprocessing.image import ImageDataGenerator
 from keras.optimizers import SGD
+from keras.callbacks import ReduceLROnPlateau, CSVLogger, EarlyStopping, ModelCheckpoint
 
-
+TRAIN_DIR = "dog_dataset/train"
+VAL_DIR = "dog_dataset/valid"
 IM_WIDTH, IM_HEIGHT = 299, 299 #fixed size for InceptionV3
 NB_EPOCHS = 3
 BAT_SIZE = 32
@@ -78,6 +80,12 @@ def train(args):
   nb_epoch = int(args.nb_epoch)
   batch_size = int(args.batch_size)
 
+  lr_reducer = ReduceLROnPlateau(monitor='val_loss', patience=10, cooldown=0, verbose=1)
+  early_stopper = EarlyStopping(min_delta=0.001, patience=10)
+  csv_logger = CSVLogger('doggy_result.csv')
+  model_checkpoint = ModelCheckpoint('weights.{epoch:02d}-{val_loss:.2f}.hdf5', save_best_only=True, save_weights_only=True, monitor='val_loss')
+
+
   # data prep
   train_datagen =  ImageDataGenerator(
       preprocessing_function=preprocess_input,
@@ -123,7 +131,8 @@ def train(args):
     samples_per_epoch=nb_train_samples,
     validation_data=validation_generator,
     nb_val_samples=nb_val_samples,
-    class_weight='auto')
+    class_weight='auto',
+    callbacks=[lr_reducer, csv_logger, model_checkpoint])
 
   # fine-tuning
   setup_to_finetune(model)
