@@ -43,9 +43,9 @@ def plot_preds(image, preds):
   plt.axis('off')
 
   plt.figure()
-  labels = ("cat", "dog")
-  plt.barh([0, 1], preds, alpha=0.5)
-  plt.yticks([0, 1], labels)
+  labels = ("jumping", "laying", "rolling", "sitting", "standing")
+  plt.barh([0, 1, 2, 3, 4], preds, alpha=0.5)
+  plt.yticks([0, 1, 2, 3, 4], labels)
   plt.xlabel('Probability')
   plt.xlim(0,1.01)
   plt.tight_layout()
