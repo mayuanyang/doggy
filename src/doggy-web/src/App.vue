@@ -8,7 +8,7 @@
           <v-icon>fa-info-circle</v-icon>
         </v-btn>
         <v-spacer></v-spacer>
-        <v-btn icon href="https://github.com/transcranial/keras-js">
+        <v-btn icon href="https://github.com/mayuanyang/doggy">
           <v-icon>fa-github</v-icon>
         </v-btn>
       </v-toolbar>

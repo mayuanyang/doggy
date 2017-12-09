@@ -40,8 +40,6 @@
           <canvas id="input-canvas"
                   :width="imageSize"
                   :height="imageSize"
-                  v-on:mouseenter="showVis = true"
-                  v-on:mouseleave="showVis = false"
           ></canvas>
           <transition name="fade">
             <div v-show="showVis">
@@ -54,10 +52,11 @@
           </transition>
         </v-flex>
         <v-flex sm6 md4 class="output-container">
-          <div v-if="imageLoading || modelRunning" class="loading-indicator">
-            <v-progress-circular indeterminate color="primary"/>
-          </div>
-          <div v-if="loaded">
+          <div>
+            <div v-if="imageLoading || modelRunning">
+              <v-progress-circular indeterminate color="primary"/>
+            </div>
+
             <div class="inference-time">
               <span>inference time: </span>
               <span v-if="inferenceTime > 0" class="inference-time-value">{{ inferenceTime.toFixed(1)
@@ -318,14 +317,8 @@
     background-color: whitesmoke;
     position: relative;
 
-  &
-  .loading-indicator {
-    position: absolute;
-    top: 5px;
-    left: 5px;
   }
 
-  &
   .error-message {
     color: var(--color-error);
     font-size: 12px;
@@ -334,26 +327,21 @@
     left: 5px;
   }
 
-  }
-
   .visualization {
     margin-right: 20px;
     position: relative;
 
-  &
+  }
   .colormap-alpha {
     position: relative;
 
-  &
+  }
   label {
     position: absolute;
     color: var(--color-darkgray);
     font-size: 10px;
   }
 
-  }
-
-  &
   .visualization-instruction {
     position: absolute;
     bottom: 10px;
@@ -362,18 +350,15 @@
     color: var(--color-lightgray);
   }
 
-  }
-
   .canvas-container {
     position: relative;
     margin: 0 20px;
 
-  &
+  }
   #input-canvas {
     background: #eeeeee;
   }
 
-  &
   #visualization-canvas {
     pointer-events: none;
     position: absolute;
@@ -381,7 +366,6 @@
     left: 0;
   }
 
-  }
 
   .output-container {
     margin-top: 10px;
@@ -390,7 +374,7 @@
     align-items: flex-start;
     justify-content: center;
 
-  &
+  }
   .inference-time {
     align-self: center;
     font-family: var(--font-monospace);
@@ -398,14 +382,11 @@
     color: var(--color-lightgray);
     margin-bottom: 10px;
 
-  &
+  }
   .inference-time-value {
     color: var(--color-green);
   }
 
-  }
-
-  &
   .output-class {
     display: flex;
     flex-direction: row;
@@ -413,7 +394,7 @@
     justify-content: center;
     padding: 6px 0;
 
-  &
+  }
   .output-label {
     text-align: right;
     width: 200px;
@@ -427,13 +408,11 @@
     border-right: 2px solid var(--color-green-lighter);
   }
 
-  &
   .output-bar {
     height: 8px;
     transition: width 0.2s ease-out;
   }
 
-  &
   .output-value {
     text-align: left;
     margin-left: 5px;
@@ -442,24 +421,18 @@
     color: var(--color-lightgray);
   }
 
+  .output-class.predicted {
   }
 
-  &
-  .output-class.predicted {
-
-  &
   .output-label {
     color: var(--color-green);
     border-left-color: var(--color-green);
   }
 
-  &
   .output-value {
     color: var(--color-green);
   }
 
-  }
-  }
 
   /* vue transition `fade` */
   .fade-enter-active,
