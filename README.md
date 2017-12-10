@@ -1,5 +1,5 @@
 # doggy
-An AI model to classify dog's actions
+An AI model to classify dog's actions, it uses Keras and Tensorflow to train and Keras-JS with vuejs as the frontend
 
 ## Setup
 Follow this guide to setup the trainning and evaluation environment
